@@ -8,6 +8,7 @@ module.exports = class CompanyController {
       next(error);
     }
   }
+
   static async findOne(req, res, next) {
     try {
       console.log("try at CompanyController findOne");
@@ -26,6 +27,7 @@ module.exports = class CompanyController {
       next(error);
     }
   }
+
   static async findMine(req, res, next) {
     try {
       console.log("try at CompanyController findMine");

@@ -8,6 +8,7 @@ module.exports = class EmployeeController {
       next(error);
     }
   }
+
   static async login(req, res, next) {
     try {
       console.log("try at EmployeeController login");

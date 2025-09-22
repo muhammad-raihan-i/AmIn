@@ -16,7 +16,7 @@ touch controllers/PresencesController.js
 route.get("/", function (request, response) {
   response.status(200).json({ message: "Ini back end" });
 });
-
+//hai aku dev
 route.get();
 
 module.exports = route;

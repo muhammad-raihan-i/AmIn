@@ -14,7 +14,7 @@ touch controllers/PresencesController.js
 */
 
 route.get("/", function (request, response) {
-  response.status(200).json({ message: "Ini back end" });
+  response.status(200).json({ message: "Ini backend AmIn (iAmIn)" });
 });
 //hai aku dev
 route.post("/owner-register", OwnerController.register);

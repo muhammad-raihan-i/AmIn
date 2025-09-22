@@ -1,9 +1,9 @@
 module.exports = class EmployeeController {
-  static async register(req, res, next) {
+  static async create(req, res, next) {
     try {
-      console.log("try at EmployeeController register");
+      console.log("try at EmployeeController create");
     } catch (error) {
-      console.log("error at EmployeeController register");
+      console.log("error at EmployeeController create");
       console.log(error);
       next(error);
     }
@@ -13,6 +13,15 @@ module.exports = class EmployeeController {
       console.log("try at EmployeeController login");
     } catch (error) {
       console.log("error at EmployeeController login");
+      console.log(error);
+      next(error);
+    }
+  }
+  static async read(req, res, next) {
+    try {
+      console.log("try at EmployeeController read");
+    } catch (error) {
+      console.log("error at EmployeeController read");
       console.log(error);
       next(error);
     }

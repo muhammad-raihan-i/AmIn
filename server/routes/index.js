@@ -16,7 +16,8 @@ touch controllers/PresencesController.js
 route.get("/", function (request, response) {
   response.status(200).json({ message: "Ini back end" });
 });
-
-route.get();
+route.post("/owner-register", OwnerController.register);
+route.post("/owner-login", OwnerController.login);
+route.put("/owner-update", OwnerController.update);
 
 module.exports = route;

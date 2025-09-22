@@ -44,13 +44,4 @@ module.exports = class CompanyController {
       next(error);
     }
   }
-  static async delete(req, res, next) {
-    try {
-      console.log("try at CompanyController delete");
-    } catch (error) {
-      console.log("error at CompanyController delete");
-      console.log(error);
-      next(error);
-    }
-  }
 };

@@ -19,5 +19,6 @@ route.get("/", function (request, response) {
 route.post("/owner-register", OwnerController.register);
 route.post("/owner-login", OwnerController.login);
 route.put("/owner-update", OwnerController.update);
+route.post("");
 
 module.exports = route;

@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Owner extends Model {
     /**
@@ -13,17 +11,55 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Owner.init({
-    fullname: DataTypes.STRING,
-    nickname: DataTypes.STRING,
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    imageUrl: DataTypes.TEXT,
-    bio: DataTypes.TEXT
-  }, {
-    sequelize,
-    modelName: 'Owner',
-  });
+  Owner.init(
+    {
+      fullname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Fullname required" },
+          notEmpty: { msg: "Fullname required" },
+        },
+      },
+      nickname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Nickname required" },
+          notEmpty: { msg: "Nickname required" },
+        },
+      },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Username required" },
+          notEmpty: { msg: "Username required" },
+        },
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Email required" },
+          notEmpty: { msg: "Email required" },
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Password required" },
+          notEmpty: { msg: "Password required" },
+        },
+      },
+      imageUrl: DataTypes.TEXT,
+      bio: DataTypes.TEXT,
+    },
+    {
+      sequelize,
+      modelName: "Owner",
+    }
+  );
   return Owner;
 };

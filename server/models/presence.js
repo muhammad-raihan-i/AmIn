@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Presence.init({
     type: DataTypes.STRING,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    EmployeeId: DataTypes.NUMBER
   }, {
     sequelize,
     modelName: 'Presence',

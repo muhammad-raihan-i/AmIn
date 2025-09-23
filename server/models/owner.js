@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notNull: { msg: "Email required" },
           notEmpty: { msg: "Email required" },
+          isEmail: { msg: "Email invalid" },
         },
       },
       password: {
@@ -51,12 +52,21 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notNull: { msg: "Password required" },
           notEmpty: { msg: "Password required" },
+          len: {
+            args: [8],
+            msg: "Password length 8 or more required",
+          },
         },
       },
       imageUrl: DataTypes.TEXT,
       bio: DataTypes.TEXT,
     },
     {
+      hooks: {
+        beforeCreate: function f(owner, options) {
+          owner.password = hash(owner.password);
+        },
+      },
       sequelize,
       modelName: "Owner",
     }

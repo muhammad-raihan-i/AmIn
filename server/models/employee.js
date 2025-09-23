@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
     /**
@@ -13,19 +11,67 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Employee.init({
-    fullname: DataTypes.STRING,
-    nickname: DataTypes.STRING,
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    imageUrl: DataTypes.TEXT,
-    bio: DataTypes.TEXT,
-    role: DataTypes.STRING,
-    CompanyId: DataTypes.NUMBER
-  }, {
-    sequelize,
-    modelName: 'Employee',
-  });
+  Employee.init(
+    {
+      fullname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Fullname required" },
+          notEmpty: { msg: "Fullname required" },
+        },
+      },
+      nickname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Nickname required" },
+          notEmpty: { msg: "Nickname required" },
+        },
+      },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Username required" },
+          notEmpty: { msg: "Username required" },
+        },
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Email required" },
+          notEmpty: { msg: "Email required" },
+          isEmail: { msg: "Email invalid" },
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Password required" },
+          notEmpty: { msg: "Password required" },
+          len: {
+            args: [8],
+            msg: "Password length &ge; 8 required",
+          },
+        },
+      },
+      imageUrl: DataTypes.TEXT,
+      bio: DataTypes.TEXT,
+      role: DataTypes.STRING,
+      CompanyId: DataTypes.NUMBER,
+    },
+    {
+      hooks: {
+        beforeCreate: function f(employee, options) {
+          employee.password = hash(employee.password);
+        },
+      },
+      sequelize,
+      modelName: "Employee",
+    }
+  );
   return Employee;
 };

@@ -1,0 +1,4 @@
+npx sequelize model:create --name Owner --attributes fullname:string,nickname:string,username:string,email:string,password:string,imageUrl:text,bio:text
+npx sequelize model:create --name Company --attributes name:string,address:text,description:text,imageUrl:text,OwnerId:number
+npx sequelize model:create --name Employee --attributes fullname:string,nickname:string,username:string,email:string,password:string,imageUrl:text,bio:text,role:string
+npx sequelize model:create --name Presence --attributes type:string,status:string

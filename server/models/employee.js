@@ -68,6 +68,9 @@ module.exports = (sequelize, DataTypes) => {
         beforeCreate: function f(employee, options) {
           employee.password = hash(employee.password);
         },
+        beforeUpdate: function f(employee, options) {
+          employee.password = hash(employee.password);
+        },
       },
       sequelize,
       modelName: "Employee",

@@ -60,15 +60,12 @@ module.exports = class CompanyController {
   static async update(req, res, next) {
     try {
       console.log("try at CompanyController update");
-      const data = await Company.findOne({
-        where: { [Op.or]: [{ email }, { username }] },
-      });
+      const data = await Company.findByPk(req.params.id);
       if (!data) {
         throw { message: "Not found" };
       }
       data.set(req.body);
       data.save();
-      data.password = undefined;
       res.status(200).json({ message: "Update success", data });
     } catch (error) {
       console.log("error at CompanyController update");

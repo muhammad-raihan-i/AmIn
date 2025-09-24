@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
       imageUrl: DataTypes.TEXT,
       bio: DataTypes.TEXT,
       role: DataTypes.STRING,
-      CompanyId: DataTypes.NUMBER,
+      CompanyId: DataTypes.INTEGER,
     },
     {
       hooks: {

@@ -18,7 +18,7 @@ module.exports = {
       EmployeeId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Employee",
+          model: "Employees",
           key: "id",
         },
         onDelete: "cascade",

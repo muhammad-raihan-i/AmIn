@@ -1,7 +1,12 @@
+const { Employee } = require("../models");
 module.exports = class EmployeeController {
   static async create(req, res, next) {
     try {
       console.log("try at EmployeeController create");
+      console.log("try at OwnerController register");
+      const data = await Employee.create(req.body);
+      data.password = undefined;
+      res.status(201).json({ message: "Register success", data });
     } catch (error) {
       console.log("error at EmployeeController create");
       console.log(error);

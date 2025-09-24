@@ -46,7 +46,7 @@ module.exports = class CompanyController {
   static async findMine(req, res, next) {
     try {
       console.log("try at CompanyController findMine");
-      const data = await Company.findAll({ where: { OwnerId: req.params.id } });
+      const data = await Company.findAll({ where: { OwnerId: req.user.id } });
       if (!data) {
         throw { message: "Not found" };
       }

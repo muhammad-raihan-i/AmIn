@@ -50,7 +50,7 @@ module.exports = class CompanyController {
         where: {
           [Op.and]: [
             { OwnerId: req.user.id },
-            { [Op.iLike]: `%${req.query}%` },
+            { [Op.iLike]: `%${req.query}%` }, //<--- ini buat search harusnya
           ],
         },
       });

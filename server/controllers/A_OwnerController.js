@@ -41,6 +41,16 @@ module.exports = class OwnerController {
   static async update(req, res, next) {
     try {
       console.log("try at OwnerController update");
+      const data = await Owner.findOne({
+        where: { [Op.or]: [{ email }, { username }] },
+      });
+      if (!data) {
+        throw { message: "Not found" };
+      }
+      data.set(req.body);
+      data.save();
+      data.password = undefined;
+      res.status(200).json({ message: "Update success", data });
     } catch (error) {
       console.log("error at OwnerController update");
       console.log(error);

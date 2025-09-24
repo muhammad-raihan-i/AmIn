@@ -3,7 +3,9 @@ module.exports = class CompanyController {
   static async create(req, res, next) {
     try {
       console.log("try at CompanyController create");
-      const data = await Company.create(req.body);
+      const object = req.body;
+      object.OwnerId = req.user.id;
+      const data = await Company.create(object);
       res.status(201).json({ message: "Create success", data });
     } catch (error) {
       console.log("error at CompanyController create");
@@ -15,6 +17,11 @@ module.exports = class CompanyController {
   static async findOne(req, res, next) {
     try {
       console.log("try at CompanyController findOne");
+      const data = await Company.findOne(req.params.id);
+      if (!data) {
+        throw { message: "Not found" };
+      }
+      res.status(201).json({ message: "Find success", data });
     } catch (error) {
       console.log("error at CompanyController findOne");
       console.log(error);

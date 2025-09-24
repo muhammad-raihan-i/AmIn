@@ -1,4 +1,7 @@
 const { Employee } = require("../models");
+const { compare } = require("../helpers/bcrypt.js");
+const { sign } = require("../helpers/jwt.js");
+const { Op } = require("sequelize");
 module.exports = class EmployeeController {
   static async create(req, res, next) {
     try {

@@ -1,4 +1,5 @@
 const { Company } = require("../models");
+const { Op } = require("sequelize");
 module.exports = class CompanyController {
   static async create(req, res, next) {
     try {
@@ -42,11 +43,17 @@ module.exports = class CompanyController {
       next(error);
     }
   }
-
   static async findMine(req, res, next) {
     try {
       console.log("try at CompanyController findMine");
-      const data = await Company.findAll({ where: { OwnerId: req.user.id } });
+      const data = await Company.findAll({
+        where: {
+          [Op.and]: [
+            { OwnerId: req.user.id },
+            { [Op.iLike]: `%${req.query}%` },
+          ],
+        },
+      });
       if (!data) {
         throw { message: "Not found" };
       }

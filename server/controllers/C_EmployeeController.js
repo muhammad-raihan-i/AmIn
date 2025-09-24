@@ -3,7 +3,6 @@ module.exports = class EmployeeController {
   static async create(req, res, next) {
     try {
       console.log("try at EmployeeController create");
-      console.log("try at OwnerController register");
       const data = await Employee.create(req.body);
       data.password = undefined;
       res.status(201).json({ message: "Register success", data });
@@ -17,6 +16,19 @@ module.exports = class EmployeeController {
   static async login(req, res, next) {
     try {
       console.log("try at EmployeeController login");
+      const { email, username, password } = req.body;
+      const data = await Employee.findOne({
+        where: { [Op.or]: [{ email }, { username }] },
+      });
+      if (!data) {
+        throw { message: decline };
+      }
+      if (!compare(password, data.password)) {
+        throw { message: decline };
+      }
+      data.password = undefined;
+      const token = sign(data);
+      res.status(200).json({ message: "Login success", data: token });
     } catch (error) {
       console.log("error at EmployeeController login");
       console.log(error);

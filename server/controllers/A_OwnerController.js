@@ -29,7 +29,7 @@ module.exports = class OwnerController {
       if (!compare(password, data.password)) {
         throw { message: decline };
       }
-      data.password = "undefined";
+      data.password = undefined;
       const token = sign(data);
       res.status(200).json({ message: "Login success", data: token });
     } catch (error) {

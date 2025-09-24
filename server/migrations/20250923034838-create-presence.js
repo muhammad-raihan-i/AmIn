@@ -17,6 +17,12 @@ module.exports = {
       },
       EmployeeId: {
         type: Sequelize.NUMBER,
+        references: {
+          model: "Employee",
+          key: "id",
+        },
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       createdAt: {
         allowNull: false,

@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Status required" },
         },
       },
-      EmployeeId: DataTypes.NUMBER,
+      EmployeeId: DataTypes.INTEGER,
     },
     {
       sequelize,

@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       imageUrl: DataTypes.TEXT,
-      OwnerId: DataTypes.NUMBER,
+      OwnerId: DataTypes.INTEGER,
     },
     {
       sequelize,

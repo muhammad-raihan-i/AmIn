@@ -6,7 +6,7 @@ module.exports = class PresenceController {
       console.log("try at PresenceController create");
       const object = req.body;
       object.EmployeeId = req.employee.id;
-      const data = await Employee.create(object);
+      const data = await Presence.create(object);
       res.status(201).jwt({ message: "Create success", data });
     } catch (error) {
       console.log("error at PresenceController create");

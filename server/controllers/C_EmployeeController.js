@@ -41,6 +41,12 @@ module.exports = class EmployeeController {
   static async findOne(req, res, next) {
     try {
       console.log("try at EmployeeController findOne");
+      const data = await Employee.findByPk(req.params.id);
+      if (!data) {
+        throw { message: "Not found" };
+      }
+      data.password = undefined;
+      res.status(200).json({ message: "Find success", data });
     } catch (error) {
       console.log("error at EmployeeController findOne");
       console.log(error);

@@ -73,6 +73,19 @@ module.exports = class EmployeeController {
   static async findByCompany(req, res, next) {
     try {
       console.log("try at EmployeeController findByCompany");
+      const data = await Employee.findAll({
+        where: {
+          [Op.and]: [
+            { name: { [Op.iLike]: `%${req.query.name}%` } },
+            { CompanyId: req.params.CompanyId },
+          ],
+        },
+        attributes: { exclude: ["password"] },
+      });
+      if (!data) {
+        throw { message: "Not found" };
+      }
+      res.status(200).json({ message: "Find success", data });
     } catch (error) {
       console.log("error at EmployeeController findByCompany");
       console.log(error);

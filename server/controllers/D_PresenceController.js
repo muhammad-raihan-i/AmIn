@@ -62,6 +62,13 @@ module.exports = class PresenceController {
   static async update(req, res, next) {
     try {
       console.log("try at PresenceController update");
+      const data = await Presence.findOne(req.params.id);
+      if (!data) {
+        throw { message: "Not found" };
+      }
+      data.set(req.body);
+      data.save();
+      res.status(200).json({ message: "Update success", data });
     } catch (error) {
       console.log("error at PresenceController update");
       console.log(error);
@@ -71,6 +78,12 @@ module.exports = class PresenceController {
   static async delete(req, res, next) {
     try {
       console.log("try at PresenceController delete");
+      const data = await Presence.findOne(req.params.id);
+      if (!data) {
+        throw { message: "Not found" };
+      }
+      await Presence.destroy(req.params.id);
+      res.status(204).json({ message: "Delete success", data });
     } catch (error) {
       console.log("error at PresenceController delete");
       console.log(error);

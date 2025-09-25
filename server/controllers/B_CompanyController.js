@@ -34,7 +34,7 @@ module.exports = class CompanyController {
       console.log("try at CompanyController findAll");
       const data = await Company.findAll({
         where: {
-          name: { [Op.iLike]: `%${req.query}%` }, //<--- ini buat search harusnya
+          name: { [Op.iLike]: `%${req.query.name}%` }, //<--- ini buat search harusnya
         },
       });
       if (!data) {
@@ -54,7 +54,7 @@ module.exports = class CompanyController {
         where: {
           [Op.and]: [
             { OwnerId: req.user.id },
-            { name: { [Op.iLike]: `%${req.query}%` } }, //<--- ini buat search harusnya
+            { name: { [Op.iLike]: `%${req.query.name}%` } }, //<--- ini buat search harusnya
           ],
         },
       });

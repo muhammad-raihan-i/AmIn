@@ -5,7 +5,7 @@ module.exports = class CompanyController {
     try {
       console.log("try at CompanyController create");
       const object = req.body;
-      object.OwnerId = req.user.id;
+      object.OwnerId = req.owner.id;
       const data = await Company.create(object);
       res.status(201).json({ message: "Create success", data });
     } catch (error) {
@@ -53,7 +53,7 @@ module.exports = class CompanyController {
       const data = await Company.findAll({
         where: {
           [Op.and]: [
-            { OwnerId: req.user.id },
+            { OwnerId: req.owner.id },
             { name: { [Op.iLike]: `%${req.query.name}%` } }, //<--- ini buat search harusnya
           ],
         },

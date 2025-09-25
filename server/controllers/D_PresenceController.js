@@ -1,5 +1,6 @@
 const { Employee } = require("../models");
 const { Presence } = require("../models");
+const { Op } = require("sequelize");
 module.exports = class PresenceController {
   static async create(req, res, next) {
     try {
@@ -31,7 +32,9 @@ module.exports = class PresenceController {
   static async findAll(req, res, next) {
     try {
       console.log("try PresenceController findAll");
-      const data = await Presence.findAll({ include: Employee });
+      const data = await Presence.findAll({
+        include: Employee,
+      });
       if (!data) {
         throw { message: "Not found" };
       }

@@ -22,23 +22,23 @@ route.post("/owners/login", OwnerController.login);
 route.put("/owners/update", OwnerController.update);
 
 route.post("/companies/create", CompanyController.create);
-route.get("/companies/findOne", CompanyController.findOne);
+route.get("/companies/findOne/:id", CompanyController.findOne);
 route.get("/companies/findAll", CompanyController.findAll);
 route.get("/companies/findMine", CompanyController.findMine);
 route.put("/companies/update", CompanyController.update);
 
 route.post("/employees/create", EmployeeController.create);
 route.get("/employees/login", EmployeeController.login);
-route.get("/employees/findOne", EmployeeController.findOne);
+route.get("/employees/findOne/:id", EmployeeController.findOne);
 route.get("/employees/findAll", EmployeeController.findAll);
-route.get("/employees/findByCompany", EmployeeController.findByCompany);
-route.put("/employees/update", EmployeeController.update);
+route.get("/employees/findByCompany/:id", EmployeeController.findByCompany);
+route.put("/employees/update/:id", EmployeeController.update);
 
 route.post("/presences/create", PresenceController.create);
-route.get("/presences/findOne", PresenceController.findOne);
+route.get("/presences/findOne/:id", PresenceController.findOne);
 route.get("/presences/findAll", PresenceController.findAll);
-route.get("/presences/findMine", PresenceController.findMine);
-route.put("/presences/update", PresenceController.update);
-route.delete("/presences/update", PresenceController.delete);
+route.get("/presences/findMine/:id", PresenceController.findMine);
+route.put("/presences/update/:id", PresenceController.update);
+route.delete("/presences/delete/:id", PresenceController.delete);
 
 module.exports = route;

@@ -1,7 +1,12 @@
+const { Employee } = require("../models");
 module.exports = class PresenceController {
   static async create(req, res, next) {
     try {
       console.log("try at PresenceController create");
+      const object = req.body;
+      object.EmployeeId = req.employee.id;
+      const data = Employee.create(object);
+      res.status(201).jwt({ message: "Create success", data });
     } catch (error) {
       console.log("error at PresenceController create");
       console.log(error);

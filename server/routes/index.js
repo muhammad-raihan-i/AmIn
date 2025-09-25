@@ -27,7 +27,7 @@ route.get("/companies/findAll", CompanyController.findAll);
 route.get("/companies/findMine", CompanyController.findMine);
 route.put("/companies/update", CompanyController.update);
 
-route.post("/employees/create", EmployeeController.create);
+route.post("/employees/register", EmployeeController.create);
 route.get("/employees/login", EmployeeController.login);
 route.get("/employees/findOne/:id", EmployeeController.findOne);
 route.get("/employees/findAll", EmployeeController.findAll);

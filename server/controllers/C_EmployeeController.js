@@ -68,6 +68,16 @@ module.exports = class EmployeeController {
   static async update(req, res, next) {
     try {
       console.log("try at EmployeeController update");
+      const data = await Owner.findOne({
+        where: { [Op.or]: [{ email }, { username }] },
+      });
+      if (!data) {
+        throw { message: "Not found" };
+      }
+      data.set(req.body);
+      data.save();
+      data.password = undefined;
+      res.status(200).json({ message: "Update success", data });
     } catch (error) {
       console.log("error at EmployeeController update");
       console.log(error);
